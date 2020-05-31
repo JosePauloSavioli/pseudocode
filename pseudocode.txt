@@ -1,0 +1,47 @@
+Function catch_best_crops (latitude, longitude):
+
+	Input (latitude, longitude)
+
+	dictionary_hardiness  	= {1: temperature_range1, 2:  temperature_range2 …}
+	dictionary_heat 	= {1: number_of_days_range1, 2: number_of_days_range2 …}
+
+	minimum_temperature, average_temperature 	= access POWER API (latitude, longitude)
+
+	days_above_30 		= Count(average_temperature > 30)
+
+	Function calculate_zones (minimum_temperature, average_temperature):
+
+		for key, value in dictionary_hardiness:
+			if minimum_temperature in value:
+				hardiness_zone 		= key
+
+		for key, value in dictionary_heat:
+			if days_above_30 in value:
+				heat_zone 		= key
+
+	hardiness_zone, heat_zone 	= calculate_zones (minimum_temperature, average_temperature)
+
+	best_crops 			= access_local_crop_data (hardiness _zone, heat_zone) # to be developed
+
+	Output (best_crops)
+
+Function login_choice ():
+
+	social_network = ‘name’
+	choice = input(“Do you want to participate on our {social_network}?”)
+	if choice = ‘yes’:
+		type_of_user 			= type_donors_or_donees()
+		user_dat, latitude, longitude 	= login_ntw_function()
+		return latitude, longitude
+	else:
+		user_dat, latitude, longitude 	= login_no_ntw_function()
+		return latitude, longitude
+
+Main_function ():
+
+	latitude, longitude 			= login_choice () #basic data capture
+	
+	best_crops 				= catch_best_crops (latitude, longitude) #catch best crops
+
+	Output (best_crops)
+
